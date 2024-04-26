@@ -8,21 +8,23 @@ const details = [
 
 const AboutUs = () => {
   const router = useRouter();
-  const { id } = router.query;
 
-  // Find the details of the team member with the provided id
-  const member = details.find((member) => member.id === id);
+  const handleDeveloperClick = (id) => {
+    router.push(`/aboutus/${id}`);
+  };
 
   return (
     <div>
-      {member ? (
-        <div>
-          <h1>{member.name}</h1>
-          <p>{member.role}</p>
-        </div>
-      ) : (
-        <p>Developer doesn't exist</p>
-      )}
+      <h1>Developers</h1>
+      <ul>
+        {details.map((member) => (
+          <li key={member.id}>
+            <button onClick={() => handleDeveloperClick(member.id)}>
+              {member.name}
+            </button>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
